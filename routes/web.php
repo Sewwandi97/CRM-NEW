@@ -21,8 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Route::get('/home', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('home');
+//
+Route::get('/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
 
 Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
 Route::resource('roles','App\Http\Controllers\Admin\RoleController');
@@ -52,9 +52,9 @@ Route::get('/index', function () {
     return view('order/index');
 });
 
-Route::get('/create', function () {
-    return view('order/create');
-});
+//Route::get('/create', function () {
+  //  return view('order/create');
+//});
 
 Route::get('/edit', function () {
     return view('order/edit');

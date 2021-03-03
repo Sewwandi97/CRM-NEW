@@ -2,7 +2,7 @@
 @section('title','Users')
 @section('content')
      
-<div>
+
   <table>
     <tr>
       <th>EmpID</th>
@@ -10,6 +10,8 @@
       <th>Email</th>
       <th>Address</th>
       <th>MobileNo</th>
+      <th>Position</th>
+      <th>Status</th>
       <th>Action</th>    
     </tr>
       @foreach($users as $user)
@@ -19,29 +21,26 @@
       <td>{{$user['email']}}</td>
       <td>{{$user['Address']}}</td>
       <td>{{$user['MobileNo']}}</td>
+      <td>{{$user['EmpType']}}</td>
+      <td>{{$user['Status']}}</td>
       <td>
         <div class="btn-group" role="group">
-        <a href="{{route('users.edit', $user->EmpID)}}">
+       <a href="{{route('users.edit', $user->EmpID)}}">
           <button type="button" >Edit</button>
         </a>
         </div>
 
         <div class="btn-group" role="group">
-        <form action="{{route('users.destroy', $user->EmpID)}}" method="POST">
+         <form action="{{route('users.destroy', $user->EmpID)}}" method="POST">
           @csrf
           @method('delete')
           <button type="submit" data-toggle="modal" data-target="#exampleModal2" >Delete</button>
-          </form>
-        </div>
+          </form>  
+      </div>
       </td> 
     </tr>
-      @endforeach
-</table>
-</div>
-
-
-
-
+      @endforeach 
+      </table>
 @endsection
 
 

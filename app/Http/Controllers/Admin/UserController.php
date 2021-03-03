@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -29,7 +30,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+       return DB::table('users')
+       ->join('roles','users.EmpID',"=",'roles.RoleID')
+       ->where('users.EmpID',2)
+       ->get();
     }
 
     /**
@@ -64,6 +68,7 @@ class UserController extends Controller
     {
         $data = user::find($EmpID);
         return view('admin.users.updateuser',['users'=>$data]);
+
     }
 
     /**
@@ -81,10 +86,13 @@ class UserController extends Controller
         $data->email = $request->input('email');
         $data->Address = $request->input('Address');
         $data->MobileNo = $request->input('MobileNo');
+        $data->EmpType = $request->input('EmpType');
+        $data->Status = $request->input('Status');
         
         $data->save();
-
-        return redirect('/home');
+        $users= User::all();
+        return view('admin.users.viewuser')->with('users', $users);
+        
     }
 
     /**
@@ -98,5 +106,10 @@ class UserController extends Controller
         $data=user::find($EmpID);
         $data->delete();
         return redirect('/home');
+
+      //  if ($data != null) {
+       //     $data->delete();
+       //     return redirect()->route('home')->with(['message'=> 'Successfully deleted!!']);
+       // }
     }
 }
