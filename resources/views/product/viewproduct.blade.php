@@ -36,9 +36,11 @@
       <th >Admin ID</th>
       <th >Product ID</th>
       <th >Product Name</th>
+      <th >Product View</th>
       <th >Brand</th>
       <th >Price</th>
       <th >Quantity</th>
+      <th >Warranty</th>
       <th >Description</th>
       <th >Status</th>
       <th >Action</th>
@@ -48,25 +50,29 @@
       <th scope="row">{{$product['AdminID']}}</th>
       <td>{{$product['ProductID']}}</td>
       <td>{{$product['Name']}}</td>
+      <td> <img src="{{asset('uploads/product/'.$product->image)  }}"
+       class="img-circle" width="100px;" height="100px;" alt="Product-Image">  </td>
       <td>{{$product['Brand']}}</td>
       <td>{{$product['Price']}}</td>
       <td>{{$product['Qty']}}</td>
+      <td>{{$product['Warranty']}}</td>
       <td>{{$product['Description']}}</td>
       <td>{{$product['Status']}}</td>
       <td>
           <a href= "/UpdateProducts/{{$product['ProductID']}}" style="margin:2px" class="text-my-own-color"><span data-feather ="edit"></span></a>                               
-          <a href= "" style="margin:10px" class="text-my-own-color"><span data-feather ="trash-2"></span></a> 
-          <!-- "/updateProduct/{{$product['ProductID']}}"  -->
+          <a href= "/Delete_Products/{{$product['ProductID']}}" style="margin:10px" class="text-my-own-color"><span data-feather ="trash-2"></span></a> 
+        
       </td>
     </tr>
         @endforeach
   </table>
+  <br>
+  <br>
+ {{$products->links()}}
   </div></div></div></div></div></div>
 </br>
 
-<div style="text-align: right;font-size: 15px;">
-<span>{{$products->links()}}</span>
-</div>
+<!-- ll -->
 </br>
 
 

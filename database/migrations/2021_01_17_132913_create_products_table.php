@@ -17,7 +17,9 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('ProductID');
             $table->string('Name');
             $table->string('Brand');
+            $table->mediumText('image')->nullable();
             $table->string('Description');
+            $table->string('Warranty');
             $table->integer('Price');
             $table->integer('Qty');
             $table->string('Status')->nullable()->default("Active");
@@ -25,6 +27,8 @@ class CreateProductsTable extends Migration
             $table->foreign('AdminID')->references('EmpID')->on('users');
             $table->timestamps();
         });
+
+
     }
 
     /**

@@ -33,6 +33,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -73,7 +74,7 @@
                         @endguest
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav px-3">
+                    <ul class="navbar-nav px-3  justify-content-end">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -88,7 +89,13 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                        <form class="form-inline my-2">
+                          <div class="dropdown mr-sm-2" id="nav-toggle" class="nav-item">
+                              <a id="notification-clock" role="button" data-toggle="dropdown" >
+                                  <span data-feather="bell"></span>
+                              </a>
+                              </div>
+                            <li class="nav-item dropdown my-2 my-sm-0">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                    <b>{{ Auth::user()->name }}</b> 
                                 </a>
@@ -109,6 +116,7 @@
                                     </form>
                                 </div>
                             </li>
+                            </form>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         @endguest
                     </ul>
@@ -128,13 +136,13 @@
                         
                         
             @else
-            <div class="container-fluid" style="background-color: #F4F2F3">
+            <div class="container-fluid pb-5" style="background-color: #F4F2F3">
                 <div class="row">
                     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="background-color: #2D3142 !important">
                         <div class="position-sticky pt-3 pb-5">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="/home">
+                                    <a class="nav-link active" aria-current="page" href="/Dashboard">
                                         <span data-feather="home"></span>
                                         Dashboard
                                     </a>
@@ -164,9 +172,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/home">
+                                    <a class="nav-link" href="/viewuser">
                                     <span data-feather="user"></span>
                                     Users
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/View-Role">
+                                    <span data-feather="settings"></span>
+                                    Role Management
                                     </a>
                                 </li>
                             </ul>
@@ -228,6 +242,10 @@
         
        
     </div>
+    </div>
+    <footer class="footer text-center pt-3 pb-3 fixed-bottom">
+                © 2021 CRM by She Squad
+            </footer>
     <!-- <footer >
     <p>Author: Hege Refsnes<br>
       <a href="mailto:hege@example.com">hege@example.com</a></p>

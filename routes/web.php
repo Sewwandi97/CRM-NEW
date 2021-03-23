@@ -23,9 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Dashboard', function () {
-    return view('admin/dashboard');
-});
+
 
 Auth::routes();
 
@@ -35,19 +33,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
 Route::resource('roles','App\Http\Controllers\Admin\RoleController');
+Route::get('/Dashboard','App\Http\Controllers\OrdersController@dashboard');
 
 //user management
 
-Route::get('/viewuser', function () {
-    return view('admin/users/viewuser');
-});
+Route::get('/viewuser','App\Http\Controllers\Admin\UserController@index');
 Route::get('admin/users/edit/{EmpID}','App\Http\Controllers\Admin\UserController@edit')->name('editUser');
 Route::post('edit/{EmpID}','App\Http\Controllers\Admin\UserController@update');
-Route::get('/add-priviledge','App\Http\Controllers\Admin\RoleController@index');
 Route::post('delete/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
 
 //Route::get('/deleteUser/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
 
+//Role Management
+
+Route::resource('roles','App\Http\Controllers\Admin\RoleController');
+Route::get('/View-Role','App\Http\Controllers\Admin\RoleController@index');
+Route::get('/Create-Role','App\Http\Controllers\Admin\RoleController@create');
+Route::post('roles','App\Http\Controllers\Admin\RoleController@store')->name('role.store');
+Route::get('roleedit/{RoleID}','App\Http\Controllers\Admin\RoleController@roleedit'); 
+Route::post('roleedit',[App\Http\Controllers\Admin\RoleController::class,'roleupdate']);
+
+Route::get('/assign-priviledge','App\Http\Controllers\Admin\RoleController@viewpriviledge');
 
 //chats
 Route::get('/chats', function () {
@@ -63,6 +69,8 @@ Route::get('show', [App\Http\Controllers\OrdersController::class,'show']);
 Route::get('joincustomers', [App\Http\Controllers\OrdersController::class,'joincustomers']);
 Route::get('joinorddetails', [App\Http\Controllers\OrdersController::class,'joinorddetails']);
 Route::get('emails', [App\Http\Controllers\OrdersController::class,'emails']);
+Route::get('progressedit/{OrderID}',[App\Http\Controllers\OrdersController::class,'progressedit']);
+Route::post('progressedit',[App\Http\Controllers\OrdersController::class,'progressupdate']);
 //Route::get('find', [OrdersController::class,'findorder']);
 
 
@@ -76,6 +84,13 @@ Route::get('product/viewproduct',[App\Http\Controllers\Product\ProductController
 Route::get('/UpdateProducts/{ProductID}',[App\Http\Controllers\Product\ProductController::class,'UpdateProducts']);
 Route::post('/Updateproducts',[App\Http\Controllers\Product\ProductController::class,'ShowUpdatesProducts']);
 Route::get('/Search_Products',[App\Http\Controllers\Product\ProductController::class,'SearchProducts']);
+Route::get('/ProductCount',[App\Http\Controllers\Product\ProductController::class,'ProductCount']);
+Route::get('/Delete_Products/{ProductID}',[App\Http\Controllers\Product\ProductController::class,'deleteproducts']);
+Route::get('/StockoutProducts',[App\Http\Controllers\Product\ProductController::class,'stockOut']);
+Route::get('/InStockProducts',[App\Http\Controllers\Product\ProductController::class,'instock']);
+Route::get('/Not_AvailableProducts',[App\Http\Controllers\Product\ProductController::class,'notavailable']);
+
+
 
 
 Route::get('/addCustomer', function () {
@@ -87,6 +102,7 @@ Route::post('/editcustomers',[App\Http\Controllers\Customer\CustomerController::
 Route::get('/deleteCustomer/{CustomerID}',[App\Http\Controllers\Customer\CustomerController::class,'DeleteCustomers']);
 Route::get('/Search_Customers',[App\Http\Controllers\Customer\CustomerController::class,'SearchCustomers']);
 Route::get('/ViewCustomers',[App\Http\Controllers\Customer\CustomerController::class, 'ViewCustomers']);
+Route::get('/CustomerCount',[App\Http\Controllers\Customer\CustomerController::class,'CustomerCount']);
 
 
 
@@ -104,7 +120,8 @@ Route::get('/Search_Chargers',[App\Http\Controllers\charge\ChargeController::cla
 Route::resource('tasks','App\Http\Controllers\TaskController');
 Route::get('/View-Task','App\Http\Controllers\TaskController@index');
 Route::get('/View-Task/edit/{TaskID}','App\Http\Controllers\TaskController@edit')->name('editTask'); 
-Route::get('/Assign-Task','App\Http\Controllers\Admin\UserController@assigntask');
+Route::get('/Create-Task','App\Http\Controllers\TaskController@create');
+Route::post('store','App\Http\Controllers\TaskController@store')->name('task.store');
 Route::post('edit','App\Http\Controllers\TaskController@update');
 Route::get('/Select-Order','App\Http\Controllers\OrdersController@selectorder');
-Route::get('/addtask/{OrderID}','App\Http\Controllers\TaskController@create' );
+// Route::get('/addtask/{OrderID}','App\Http\Controllers\TaskController@create' );
