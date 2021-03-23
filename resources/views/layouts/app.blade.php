@@ -240,7 +240,7 @@
             @endguest
         </main>
         
-      @yield('js_user_page')
+       
     </div>
     </div>
     <footer class="footer text-center pt-3 pb-3 fixed-bottom">
