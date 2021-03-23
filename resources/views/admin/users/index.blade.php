@@ -17,7 +17,7 @@
         <input type="text" class="form-control" name="query" id="query" placeholder="Search Employee"> <span class="input-group-btn">
         <button type="submit" class="btn btn-default">
         <span class="glyphicon glyphicon-search"></span>
-        </button> 
+        </button>
         </span>
       </div>
     </form>
@@ -31,7 +31,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Address</th>
-      <th>MobileNo</th> 
+      <th>MobileNo</th>
       <th>Action</th>    
     </tr>
       @foreach($users as $user)
@@ -62,6 +62,13 @@
     <button type="button" data-toggle="modal" data-target="#exampleModal1" >Delete</button>
                 </div> -->
       
+
+
+ 
+
+
+
+
 @endsection
 
 
