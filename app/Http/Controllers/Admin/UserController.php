@@ -19,8 +19,8 @@ class UserController extends Controller
         //return view('index');
         $users= User::all();
         return view('admin.users.index')->with('users', $users);
-
-    }
+ 
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -81,10 +81,13 @@ class UserController extends Controller
         $data->email = $request->input('email');
         $data->Address = $request->input('Address');
         $data->MobileNo = $request->input('MobileNo');
+        //$data->Emptype = $request->input('Position');
+       // $data->Status = $request->input('Status');
         
         $data->save();
 
-        return redirect('/home');
+       return redirect('/home');
+      // return view('users.viewuser');
     }
 
     /**

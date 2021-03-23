@@ -31,7 +31,9 @@
       <th>Name</th>
       <th>Email</th>
       <th>Address</th>
-      <th>MobileNo</th> 
+      <th>MobileNo</th>
+      <th>Pisition</th>
+      <th>Status</th> 
       <th>Action</th>    
     </tr>
       @foreach($users as $user)
@@ -41,6 +43,8 @@
       <td>{{$user['email']}}</td>
       <td>{{$user['Address']}}</td>
       <td>{{$user['MobileNo']}}</td>
+      <td>{{$user['EmpType']}}</td>
+      <td>{{$user['Action']}}</td>
       <td>
         
         <a href="{{route('users.edit', $user->EmpID)}}" style="margin:2px" class="text-my-own-color">
