@@ -227,7 +227,7 @@
             @endguest
         </main>
         
-       
+      @yield('js_user_page')
     </div>
     <!-- <footer >
     <p>Author: Hege Refsnes<br>

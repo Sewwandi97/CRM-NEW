@@ -5,9 +5,10 @@
         <div class="container">
         <h2 style="text-align: center ;color:#233554">Update User Details</h2>
         <br>
-        <form method="POST" action="{{ route('users.update', [$users->EmpID]) }}" id="myform">
-            @csrf
-            @method('PUT')
+        <form method="POST" action="/users/{{$users->EmpID}}" id="myform">
+            @csrf()
+            @method('PATCH')
+           <!-- @method('PUT')-->
             <label for="EmpID" ><b>Emp ID : </b></label>
             <input type="text" name="EmpID" required style="background: #ffffff; margin: 5px 0 22px 0; border: none; padding: 10px; width: 100%" value="{{$users->EmpID}}" readonly>
             <br>
@@ -34,8 +35,8 @@
                 <br>
                 <label for="Status"><b>Status : </b></label>
                 <select  name="Status" style="background: #ffffff; margin: 5px 0 22px 0; border: none; padding: 10px; width: 100%" >
-                    <option value="Customer Care Person">Active</option>
-                    <option value="Service Person">Leave</option>
+                    <option value="Active">Active</option>
+                    <option value="Leave">Leave</option>
                 </select>
             <br>
             <div class="btn-group float-right" role="group">

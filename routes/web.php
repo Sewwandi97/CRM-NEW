@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\charge\ChargeController;
@@ -31,18 +31,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Route::get('/home', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('home');
 
-Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
+//Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
 Route::resource('roles','App\Http\Controllers\Admin\RoleController');
-
-//user management
-
-Route::get('/viewuser', function () {
-    return view('admin/users/viewuser');
-});
-Route::get('admin/users/edit/{EmpID}','App\Http\Controllers\Admin\UserController@edit')->name('editUser');
-Route::post('edit/{EmpID}','App\Http\Controllers\Admin\UserController@update');
 Route::get('/add-priviledge','App\Http\Controllers\Admin\RoleController@index');
-Route::post('delete/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
+
 
 //Route::get('/deleteUser/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
 
@@ -108,3 +100,15 @@ Route::get('/Assign-Task','App\Http\Controllers\Admin\UserController@assigntask'
 Route::post('edit','App\Http\Controllers\TaskController@update');
 Route::get('/Select-Order','App\Http\Controllers\OrdersController@selectorder');
 Route::get('/addtask/{OrderID}','App\Http\Controllers\TaskController@create' );
+
+//role permission
+Route::resource('users','App\Http\Controllers\Admin\UserController');
+
+//user management
+
+Route::get('/viewuser', function () {
+    return view('admin/users/viewuser');
+});
+Route::get('admin/users/edit/{EmpID}','App\Http\Controllers\Admin\UserController@edit')->name('editUser');
+Route::post('edit/{EmpID}','App\Http\Controllers\Admin\UserController@update');
+Route::post('delete/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');

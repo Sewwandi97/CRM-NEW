@@ -17,9 +17,8 @@ class UserController extends Controller
     {
         //return view('views: admin.users.index');
         //return view('index');
-        $users= User::all();
-        return view('admin.users.index')->with('users', $users);
-
+        $users= User::orderBy('EmpID','asc')->get();
+        return view('admin.users.index' ,['users'=>$users]);
     }
 
     /**
@@ -29,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.users.create');        
     }
 
     /**
@@ -51,7 +50,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show', ['user'=>$user]);
     }
 
     /**
@@ -60,10 +59,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($EmpID)
+    public function edit(User $user) 
     {
-        $data = user::find($EmpID);
-        return view('admin.users.updateuser',['users'=>$data]);
+        //$data = user::find($EmpID);
+        return view('admin.users.updateuser',['users'=>$user]);
     }
 
     /**
@@ -75,16 +74,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $data = user::find($request->input('EmpID'));
         $data->EmpID = $request->input('EmpID');
         $data->name = $request->input('name');
         $data->email = $request->input('email');
         $data->Address = $request->input('Address');
         $data->MobileNo = $request->input('MobileNo');
+        $data->EmpType = $request->input('Position');
+        $data->Status = $request->input('Status');
         
         $data->save();
-
         return redirect('/home');
+        
     }
 
     /**
