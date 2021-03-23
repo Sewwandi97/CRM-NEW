@@ -28,8 +28,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Route::get('/home', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('home');
+//
+Route::get('/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
 
 //Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
 Route::resource('roles','App\Http\Controllers\Admin\RoleController');
@@ -97,6 +97,7 @@ Route::get('/Not_AvailableProducts',[App\Http\Controllers\Product\ProductControl
 
 
 
+<<<<<<< HEAD
 
 Route::get('/addCustomer', function () {
     return view('customer/addcustomer');
@@ -109,6 +110,11 @@ Route::get('/Search_Customers',[App\Http\Controllers\Customer\CustomerController
 Route::get('/ViewCustomers',[App\Http\Controllers\Customer\CustomerController::class, 'ViewCustomers']);
 Route::get('/CustomerCount',[App\Http\Controllers\Customer\CustomerController::class,'CustomerCount']);
 
+=======
+//Route::get('/create', function () {
+  //  return view('order/create');
+//});
+>>>>>>> 447a647345a03721715c26ea64c705c654daf0be
 
 
 Route::get('/addChargers', function () {

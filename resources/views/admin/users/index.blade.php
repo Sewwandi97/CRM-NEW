@@ -3,6 +3,7 @@
 @section('header','Employee Details')
 
 @section('content')
+<<<<<<< HEAD
 <!-- <div class="pull-left">
     <a class="btn btn-primary" href="/Create-Task">Create New User<span data-feather="plus"></a>
 </div> -->
@@ -32,6 +33,11 @@
     <div class="container">
     <form action="">
     <table>
+=======
+     
+<div>
+  <table>
+>>>>>>> 447a647345a03721715c26ea64c705c654daf0be
     <tr>
       <th>EmpID</th>
       <th>Name</th>
@@ -53,6 +59,7 @@
       <a href="/users/{{$user['EmpID']}}" data-toggle="modal"   data-target="#exampleModal2" data-userid="{{ $user['EmpID']}}"style="margin:2px" class="text-my-own-color"><span data-feather="trash"></span></a>
       </td> 
     </tr>
+<<<<<<< HEAD
 
     @endforeach 
  </table>
@@ -87,6 +94,10 @@
 
   
  </div></div></div></div></div></div></div>
+=======
+</table>
+</div>
+>>>>>>> 447a647345a03721715c26ea64c705c654daf0be
 
 @section('js_user_page')
 
