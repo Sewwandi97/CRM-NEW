@@ -95,6 +95,7 @@
   
  </div></div></div></div></div></div></div>
 =======
+      @endforeach
 </table>
 </div>
 >>>>>>> 447a647345a03721715c26ea64c705c654daf0be
