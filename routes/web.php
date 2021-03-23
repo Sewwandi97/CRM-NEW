@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\charge\ChargeController;
@@ -28,11 +28,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//
+Route::get('/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
 
-//Route::get('/home', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('home');
-
-Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
+//Route::resource('/admin/users','App\Http\Controllers\Admin\UserController');
 Route::resource('roles','App\Http\Controllers\Admin\RoleController');
+<<<<<<< HEAD
+Route::get('/add-priviledge','App\Http\Controllers\Admin\RoleController@index');
+
+=======
 Route::get('/Dashboard','App\Http\Controllers\OrdersController@dashboard');
 
 //user management
@@ -41,6 +45,7 @@ Route::get('/viewuser','App\Http\Controllers\Admin\UserController@index');
 Route::get('admin/users/edit/{EmpID}','App\Http\Controllers\Admin\UserController@edit')->name('editUser');
 Route::post('edit/{EmpID}','App\Http\Controllers\Admin\UserController@update');
 Route::post('delete/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
+>>>>>>> 311034ed1a80dabbab7cf4f078053fa026a1eb74
 
 //Route::get('/deleteUser/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
 
@@ -92,6 +97,7 @@ Route::get('/Not_AvailableProducts',[App\Http\Controllers\Product\ProductControl
 
 
 
+<<<<<<< HEAD
 
 Route::get('/addCustomer', function () {
     return view('customer/addcustomer');
@@ -104,6 +110,11 @@ Route::get('/Search_Customers',[App\Http\Controllers\Customer\CustomerController
 Route::get('/ViewCustomers',[App\Http\Controllers\Customer\CustomerController::class, 'ViewCustomers']);
 Route::get('/CustomerCount',[App\Http\Controllers\Customer\CustomerController::class,'CustomerCount']);
 
+=======
+//Route::get('/create', function () {
+  //  return view('order/create');
+//});
+>>>>>>> 447a647345a03721715c26ea64c705c654daf0be
 
 
 Route::get('/addChargers', function () {
@@ -124,4 +135,20 @@ Route::get('/Create-Task','App\Http\Controllers\TaskController@create');
 Route::post('store','App\Http\Controllers\TaskController@store')->name('task.store');
 Route::post('edit','App\Http\Controllers\TaskController@update');
 Route::get('/Select-Order','App\Http\Controllers\OrdersController@selectorder');
+<<<<<<< HEAD
+Route::get('/addtask/{OrderID}','App\Http\Controllers\TaskController@create' );
+
+//role permission
+Route::resource('users','App\Http\Controllers\Admin\UserController');
+
+//user management
+
+Route::get('/viewuser', function () {
+    return view('admin/users/viewuser');
+});
+Route::get('admin/users/edit/{EmpID}','App\Http\Controllers\Admin\UserController@edit')->name('editUser');
+Route::post('edit/{EmpID}','App\Http\Controllers\Admin\UserController@update');
+Route::post('delete/{EmpID}','App\Http\Controllers\Admin\UserController@destroy');
+=======
 // Route::get('/addtask/{OrderID}','App\Http\Controllers\TaskController@create' );
+>>>>>>> 311034ed1a80dabbab7cf4f078053fa026a1eb74
