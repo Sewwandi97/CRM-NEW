@@ -41,13 +41,15 @@ class OrdersController extends Controller
     
         Order::create($request->all());
         // $order->CustomerCareID = Auth::user()->EmpID;
-        order_detail::create($request->all());
+        $content=order_detail::create($request->all());
+        DB::table('products')
+					->where('ProductID', $content->ProductID)
+					->update(['Qty' => DB::raw('QTy - '.$content->Qty)]);
      
         return redirect()->route('orders.index')
                         ->with('success','Order created successfully.');
     }
-
-  
+    
     public function show(Order $order)
     {
         return view('orders.show',compact('order'));
@@ -90,6 +92,17 @@ class OrdersController extends Controller
           ->get();   
     }
 
+    public function jointasks(Order $order)
+    {
+        // return DB::table('orders')->get();
+           return DB::table('orders')
+          ->join('tasks','orders.TaskID',"=",'tasks.TaskID')
+          ->select('tasks.*')
+          ->where('orders.TaskID',1)
+          ->get();   
+    }
+
+
     public function joinorddetails(Order $order)
     {
         // return DB::table('orders')->get();
@@ -129,4 +142,25 @@ class OrdersController extends Controller
 
         return view('admin.dashboard',compact('orders'));
     }
+
+    public function progressedit($OrderID)
+    {
+        $data = order::find($OrderID);
+        return view('orders.updateprogress',['orders'=>$data]);
+    }
+
+    public function progressupdate(Request $request, Order $order)
+    {
+        $data = order::find($request->input('OrderID'));
+        $data->OrderID = $request->input('OrderID');
+        $data->CustomerID = $request->input('CustomerID');
+        $data->Progress = $request->input('Progress');
+        $data->Due_date = $request->input('Due_date');
+        
+        $data->save();
+
+        return redirect('/index');
+    }
+
+
 }

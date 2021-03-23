@@ -85,8 +85,13 @@ class UserController extends Controller
         $data->Status = $request->input('Status');
         
         $data->save();
+<<<<<<< HEAD
         return redirect('/home');
         
+=======
+
+        return redirect('/viewuser');
+>>>>>>> 311034ed1a80dabbab7cf4f078053fa026a1eb74
     }
 
     /**

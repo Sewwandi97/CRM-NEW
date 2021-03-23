@@ -74,7 +74,7 @@
                         @endguest
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav px-3">
+                    <ul class="navbar-nav px-3  justify-content-end">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -89,7 +89,13 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                        <form class="form-inline my-2">
+                          <div class="dropdown mr-sm-2" id="nav-toggle" class="nav-item">
+                              <a id="notification-clock" role="button" data-toggle="dropdown" >
+                                  <span data-feather="bell"></span>
+                              </a>
+                              </div>
+                            <li class="nav-item dropdown my-2 my-sm-0">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                    <b>{{ Auth::user()->name }}</b> 
                                 </a>
@@ -110,6 +116,7 @@
                                     </form>
                                 </div>
                             </li>
+                            </form>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         @endguest
                     </ul>
@@ -165,9 +172,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/home">
+                                    <a class="nav-link" href="/viewuser">
                                     <span data-feather="user"></span>
                                     Users
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/View-Role">
+                                    <span data-feather="settings"></span>
+                                    Role Management
                                     </a>
                                 </li>
                             </ul>
@@ -229,6 +242,10 @@
         
       @yield('js_user_page')
     </div>
+    </div>
+    <footer class="footer text-center pt-3 pb-3 fixed-bottom">
+                © 2021 CRM by She Squad
+            </footer>
     <!-- <footer >
     <p>Author: Hege Refsnes<br>
       <a href="mailto:hege@example.com">hege@example.com</a></p>

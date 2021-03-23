@@ -13,25 +13,30 @@
          {{$error}}
           </div>
            @endforeach -->
-        <form method="POST" action="/Updateproducts"id="myformproduct">
+        <form method="POST" action="/Updateproducts"id="myformproduct" enctype="multipart/form-data" >
             @csrf
-            <label for="AdminID" ><b>Admin ID : </b></label>
+            <!-- <label for="AdminID" ><b>Admin ID : </b></label>
             <input type="text" name="AdminID" value="{{$data['AdminID']}}" name="Name" required readonly>
-            <br>
-            <label for="ProductID" ><b>Product ID: </b></label>
+            <br> -->
+             <label for="ProductID" ><b>Product ID: </b></label>
             <input type="text" name="ProductID" value="{{$data['ProductID']}}" name="Name" required readonly>
-            <br>
+            <br> 
             <label for="Name" ><b>Product Name : </b></label>
             <input type="text" name="Name" value="{{$data['Name']}}"required>
             <br>
             <label for="Brand" ><b>Brand : </b></label>
             <input type="text" name="Brand" value="{{$data['Brand']}}" required>
             <br>
+            <!-- <label for="file" ><b>Product View: </b></label>
+            <input type="file" name="image" onchange="previewFile(this)"/>
+            <img id="previewImg" alt="Product-View" src="{{asset('uploads/product')}}/{{$data->image }}"  width="100px;" height="100px;"/>
+            <br>
+            <br> -->
             <label for="Price" ><b>Price : </b></label>
             <input type="number" name="Price" value="{{$data['Price']}}" min="1" required>
             <br>
             <label for="Qty" ><b>Quantity : </b></label>
-            <input type="number" name="Qty"  value="{{$data['Qty']}}" min="1" required>
+            <input type="number" name="Qty"  value="{{$data['Qty']}}" required>
             <br>
             <label for="Warranty"><b>Warranty : </b></label>
             <select  name="Warranty">
