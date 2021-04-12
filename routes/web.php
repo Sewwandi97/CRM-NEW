@@ -125,3 +125,8 @@ Route::post('store','App\Http\Controllers\TaskController@store')->name('task.sto
 Route::post('edit','App\Http\Controllers\TaskController@update');
 Route::get('/Select-Order','App\Http\Controllers\OrdersController@selectorder');
 // Route::get('/addtask/{OrderID}','App\Http\Controllers\TaskController@create' );
+
+
+Route::get('/View-Chat',[App\Http\Controllers\ChatController::class, 'index']);
+Route::get('/message/{EmpID}', [App\Http\Controllers\ChatController::class, 'getMessage'])->name('message');
+Route::post('message', [App\Http\Controllers\ChatController::class, 'sentMessage']);

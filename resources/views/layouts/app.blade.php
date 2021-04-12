@@ -48,6 +48,125 @@
           font-size: 3.5rem;
         }
       }
+
+      .user-wrapper, .message-wrapper{
+          border: 1px solid #dddddd;
+          overflow-y: auto;
+      }
+
+      .user-wrapper{
+        height:600px;
+      }
+
+      .user{
+        cursor: pointer; 
+        padding : 5px 0;
+        position : relative;
+      }
+
+      .user:hover{
+        background : #eeeeee;
+      }
+
+      .user:last-child{
+        margin-bottom :0;
+      }
+
+      .pending{
+        position:absolute;
+        left: 12px;
+        top : 5px;
+        background : #b600ff;
+        margin : 0;
+        border-radius : 50%;
+        width : 15px;
+        height :15px;
+        line-height: 10px; 
+        padding-left: 4px;
+        color : #ffffff;
+        font-size: 12px;
+      }
+
+      .media-left{
+        margin : 0 10px;
+        }
+      
+      .media-left img{
+        width :64px;
+        border-radius:64px;
+
+      }
+
+      .media-body p{
+        margin :6px 0;
+      }
+
+      ul{
+        margin: 0;
+        padding :0;
+      }
+      li{
+        list-style: none;
+      }
+
+      .message-wrapper{
+        padding :10px;
+        height : 536px;
+        background : #eeeeee;
+      }
+
+      .messages .message{
+        margin-bottom :15px;
+      }
+
+      .messages .message:last-child{
+        margin-bottom :0;
+      }
+
+      .received, .sent{
+        width :45%;
+        padding :3px 10px;
+        border-radius :10px;
+      }
+ 
+      .received {
+        background : #ffffff;
+        float: left;
+      }
+
+      .sent {
+        background : #5252ff ;
+        float :right;
+        text-align :right;
+      }
+
+      .message p{
+        margin : 5px 0;
+      }
+
+      .date{
+        color: #777777;
+        font-size: 12px; 
+      }
+      .active{
+        background: #eeeeee;
+      }
+        
+      input[type=text]{
+        width :100%;
+        padding :12px 20px;
+        margin : 15px 0 0 0;
+        display: inline-block;
+        border-radius: 4px;
+        box-sizing : border-box;
+        outline: none;
+        border : 1px solid #cccccc;
+      }
+
+      input[type=text]:focus{
+        border :1px solid #aaaaaa;
+      }
+      }
     </style>
 
 </head>
@@ -89,7 +208,7 @@
                                 </li>
                             @endif
                         @else
-                        <form class="form-inline my-2">
+                         
                           <div class="dropdown mr-sm-2" id="nav-toggle" class="nav-item">
                               <a id="notification-clock" role="button" data-toggle="dropdown" >
                                   <span data-feather="bell"></span>
@@ -116,7 +235,7 @@
                                     </form>
                                 </div>
                             </li>
-                            </form>
+                            
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         @endguest
                     </ul>
@@ -183,6 +302,7 @@
                                     Role Management
                                     </a>
                                 </li>
+                                
                             </ul>
 
                             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -216,6 +336,13 @@
               Feedbacks
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/View-Chat">
+              <span data-feather="message-circle"></span>
+                 Chat
+            </a>
+         </li>
         </ul>
       </div>
     </nav>
@@ -240,9 +367,41 @@
             @endguest
         </main>
         
-       
     </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      var receiver_id =' ';
+      
+     var my_id = "{{Auth::User()->EmpID}}";
+      
+      
+       $(document).ready(function(){
+          $('.user').click(function(){
+          $('.user').removeClass('active');
+          $(this).addClass('active');
+          $(this).find('.pending').remove();
+
+           receiver_id =$(this).attr('id');
+           alert(receiver_id);
+
+          
+          // $.ajax({
+          //   type: "get",
+          //   url: "message/"+receiver_id,
+          //   data:"",
+          //   cache: false,
+          //   success: function(data){
+          //   alert(data);
+          //   }
+          //   });
+          });
+       });
+    </script>
+    
+    
+
     <footer class="footer text-center pt-3 pb-3 fixed-bottom">
                 © 2021 CRM by She Squad
             </footer>
